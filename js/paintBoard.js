@@ -14,13 +14,18 @@ canvas.height = 800;
 
 // ctx.fillRect(100,100, 100,100);
 ctx.fillRect(100, 100, 100, 100);
+ctx.beginPath();
 ctx.rect(200, 200, 100, 100);
+ctx.fillStyle = "green";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
 ctx.rect(300, 300, 100, 100);
 // ctx.stroke();
 ctx.fill();
+ctx.closePath();
+
+ctx.beginPath();
 ctx.rect(400, 400, 100, 100);
 ctx.fillStyle = "red";
-// ctx.fill();
-setTimeout(()=>{
-    ctx.fill();
-}, 3000);
+ctx.fill();
