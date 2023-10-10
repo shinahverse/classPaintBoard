@@ -9,23 +9,18 @@ const canvas = document.getElementById("canvas");
 //
 const ctx = canvas.getContext("2d");
 
-canvas.width = 400;
-canvas.height = 500;
+canvas.width = 800;
+canvas.height = 800;
 
-//line 설정
-ctx.lineWidth = 5;
-
-// 벽
-ctx.strokeRect(75, 140 , 150, 110);
-
-//문
-ctx.fillRect(130, 190, 40, 60);
-
-//지붕
-ctx.beginPath();
-ctx.moveTo(50,140);
-ctx.lineTo(150,60);
-ctx.lineTo(250, 140);
-ctx.closePath();
-ctx.fillStyle = "green";
+// ctx.fillRect(100,100, 100,100);
+ctx.fillRect(100, 100, 100, 100);
+ctx.rect(200, 200, 100, 100);
+ctx.rect(300, 300, 100, 100);
+// ctx.stroke();
 ctx.fill();
+ctx.rect(400, 400, 100, 100);
+ctx.fillStyle = "red";
+// ctx.fill();
+setTimeout(()=>{
+    ctx.fill();
+}, 3000);
