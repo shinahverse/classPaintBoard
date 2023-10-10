@@ -12,20 +12,14 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// ctx.fillRect(100,100, 100,100);
-ctx.fillRect(100, 100, 100, 100);
-ctx.beginPath();
-ctx.rect(200, 200, 100, 100);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.rect(300, 300, 100, 100);
+//
+ctx.moveTo(100,100);
+//
+ctx.lineTo(150,100);
+ctx.lineTo(150,200);
+ctx.lineTo(100,200);
+ctx.lineTo(100,100);
+//선으로 그릴 때
 // ctx.stroke();
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.rect(400, 400, 100, 100);
-ctx.fillStyle = "red";
+//도형 안을 채울 때
 ctx.fill();
