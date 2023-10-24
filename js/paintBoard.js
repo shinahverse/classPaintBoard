@@ -8,16 +8,16 @@
 *                  - 여러 색으로 선 그리기
 *                  - 사용자가 마우스를 움직이다가 클릭하면 선 그리기
 *                  - 선을 그릴 때마다 선 색깔 바꾸기
+*                  - 색깔 선택하기
 */
 
 const canvas = document.getElementById("canvas");
 const lineWidth = document.getElementById("line-width");
+const color = document.getElementById("color");
 const ctx = canvas.getContext("2d");
-const colors = ["blue", "green", "yellow", "orange", "red", "skyblue", "purple"];
-
+// const colors = ["blue", "green", "yellow", "orange", "red", "skyblue", "purple"];
 //flag 변수
 let isPainting = false;
-
 canvas.width = 800;
 canvas.height = 800;
 ctx.lineWidth = lineWidth.value;
@@ -61,9 +61,17 @@ function onChangeLineWidth(event){
     ctx.lineWidth = event.target.value;
 }
 
+/**
+ * 색을 변경한다.
+ */
+function onChangeColor(event){
+    ctx.strokeStyle = event.target.value;
+}
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", cancelPainting);
 canvas.addEventListener("mouseleave", cancelPainting);
 
 lineWidth.addEventListener("change", onChangeLineWidth);
+
+color.addEventListener("change", onChangeColor);
