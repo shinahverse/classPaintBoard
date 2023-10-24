@@ -44,6 +44,7 @@ function onMouseDown(event){
 
 /**
  * 그리기를 취소한다.
+ * 선을 그릴 때마다 선 색깔을 바꾼다.
  */
 function cancelPainting(event){
     isPainting = false;
