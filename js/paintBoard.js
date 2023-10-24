@@ -13,9 +13,10 @@
 
 const canvas = document.getElementById("canvas");
 const lineWidth = document.getElementById("line-width");
-const color = document.getElementById("color");
+const colorOptions = Array.from(document.getElementsByClassName("color-option"));
+
 const ctx = canvas.getContext("2d");
-// const colors = ["blue", "green", "yellow", "orange", "red", "skyblue", "purple"];
+
 //flag 변수
 let isPainting = false;
 canvas.width = 800;
@@ -49,23 +50,25 @@ function onMouseDown(event){
 function cancelPainting(event){
     isPainting = false;
     ctx.beginPath();
-    const color = colors[Math.floor(Math.random()*colors.length)];
-    ctx.strokeStyle = color;
+
 }
 
 /**
  * 선의 두께를 변경한다.
  */
 function onChangeLineWidth(event){
-    console.log(event.target.value);
+    //console.log(event.target.value);
     ctx.lineWidth = event.target.value;
 }
 
 /**
  * 색을 변경한다.
  */
-function onChangeColor(event){
-    ctx.strokeStyle = event.target.value;
+function onClickColor(event){
+    console.dir(event);
+    const colorValue = event.target.dataset.color;
+    ctx.strokeStyle = colorValue;
+    ctx.fillStyle = colorValue;
 }
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
@@ -74,4 +77,5 @@ canvas.addEventListener("mouseleave", cancelPainting);
 
 lineWidth.addEventListener("change", onChangeLineWidth);
 
-color.addEventListener("change", onChangeColor);
+colorOptions.forEach((color) =>
+    color.addEventListener("click", onClickColor));
