@@ -7,6 +7,7 @@
 *       2023.10.24 - 캔버스를 클릭할 때마다 선 그리기
 *                  - 여러 색으로 선 그리기
 *                  - 사용자가 마우스를 움직이다가 클릭하면 선 그리기
+*                  - 선을 그릴 때마다 선 색깔 바꾸기
 */
 
 const canvas = document.getElementById("canvas");
@@ -47,6 +48,8 @@ function onMouseDown(event){
 function cancelPainting(event){
     isPainting = false;
     ctx.beginPath();
+    const color = colors[Math.floor(Math.random()*colors.length)];
+    ctx.strokeStyle = color;
 }
 
 /**
