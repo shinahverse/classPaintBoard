@@ -9,7 +9,7 @@
 *                  - 사용자가 마우스를 움직이다가 클릭하면 선 그리기
 *                  - 선을 그릴 때마다 선 색깔 바꾸기
 *                  - 색깔 선택하기
-*                  - 모드 선택하기(채우기/그리기)
+*                  - 모드 선택하기(채우기/선그리기)
 */
 
 const canvas = document.getElementById("canvas");
@@ -81,13 +81,9 @@ function onClickColor(event){
  */
 function onMode(){
     //isFilling true
-    if (isFilling){
-        isFilling = false;
-        btnMode.innerText = "채우기";
-    }else {    //isFilling false
-        isFilling = true;
-        btnMode.innerText = "그리기";
-    }
+
+    //isFilling false
+
 }
 
 /**
@@ -95,9 +91,6 @@ function onMode(){
  */
 function onClickCanvas(){
     //isFilling true
-    if (isFilling) {
-        ctx.fillRect(0,0,800,800);
-    }
     
 }
 canvas.addEventListener("mousemove", onMouseMove);
@@ -109,5 +102,4 @@ lineWidth.addEventListener("change", onChangeLineWidth);
 
 colorOptions.forEach((color) =>
     color.addEventListener("click", onClickColor));
-
 btnMode.addEventListener("click", onMode);
