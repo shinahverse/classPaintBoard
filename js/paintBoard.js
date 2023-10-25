@@ -9,16 +9,22 @@
 *                  - 사용자가 마우스를 움직이다가 클릭하면 선 그리기
 *                  - 선을 그릴 때마다 선 색깔 바꾸기
 *                  - 색깔 선택하기
-*                  - 모드 선택하기(채우기/그리기)
+*       2023.10.25 - 모드 선택하기(채우기/그리기)
+*                  - 캔버스 초기화하기
 */
 
 const canvas = document.getElementById("canvas");
 const lineWidth = document.getElementById("line-width");
 const colorOptions = Array.from(document.getElementsByClassName("color-option"));
 const btnMode = document.getElementById("btnMode");
+const btnInit = document.getElementById("btnInit");
+
 const ctx = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 800;
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 800;
+
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
 
 //flag 변수
@@ -96,10 +102,19 @@ function onMode(){
 function onClickCanvas(){
     //isFilling true
     if (isFilling) {
-        ctx.fillRect(0,0,800,800);
+        ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
     }
     
 }
+
+/** 
+ * 캔버스를 초기화한다. 
+*/
+function onClickInit(){
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", cancelPainting);
@@ -111,3 +126,5 @@ colorOptions.forEach((color) =>
     color.addEventListener("click", onClickColor));
 
 btnMode.addEventListener("click", onMode);
+
+btnInit.addEventListener("click", onClickInit);
