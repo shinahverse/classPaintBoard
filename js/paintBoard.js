@@ -12,6 +12,7 @@
 *       2023.10.25 - 모드 선택하기(채우기/그리기)
 *                  - 캔버스 초기화하기
 *                  - 지우기 기능 추가
+*                  - 배경색에 맞추어 지우기 기능 추가
 */
 
 const canvas = document.getElementById("canvas");
@@ -20,7 +21,7 @@ const colorOptions = Array.from(document.getElementsByClassName("color-option"))
 const btnMode = document.getElementById("btnMode");
 const btnInit = document.getElementById("btnInit");
 const btnEraser = document.getElementById("btnEraser");
-
+let canvasBgColor = "";
 
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 800;
@@ -77,10 +78,13 @@ function onChangeLineWidth(event){
  * 색을 변경한다.
  */
 function onClickColor(event){
-    console.dir(event);
+    //console.dir(event);
     const colorValue = event.target.dataset.color;
     ctx.strokeStyle = colorValue;
     ctx.fillStyle = colorValue;
+    if (isFilling){
+        canvasBgColor = colorValue;
+    }
 }
 
 /**
@@ -102,7 +106,8 @@ function onMode(){
 /**
  * 캔버스를 선택한 색깔로 채운다
  */
-function onClickCanvas(){
+function onClickCanvas(event){
+    //console.log("onClickCanvas", event);
     //isFilling true
     if (isFilling) {
         ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
@@ -114,6 +119,7 @@ function onClickCanvas(){
  * 캔버스를 초기화한다. 
 */
 function onClickInit(){
+    
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
@@ -121,10 +127,13 @@ function onClickInit(){
 /**
  * 그린 그림을 지운다.
  */
- function onClickEraser(){
-    ctx.strokeStyle ="white"
+ function onClickEraser(event){
+    //console.dir(event);
+    //ctx.strokeStyle = "white";
+    ctx.strokeStyle = canvasBgColor;
     isFilling = false;
     btnMode.innerText = "채우기"
+
  }
 
 canvas.addEventListener("mousemove", onMouseMove);
