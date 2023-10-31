@@ -85,6 +85,8 @@ function onClickColor(event){
     if (isFilling){
         canvasBgColor = colorValue;
     }
+    // console.log(colorValue);
+    // console.log(canvasBgColor);
 }
 
 /**
