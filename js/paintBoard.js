@@ -13,6 +13,7 @@
 *                  - 캔버스 초기화하기
 *                  - 지우기 기능 추가
 *                  - 배경색에 맞추어 지우기 기능 추가
+*       2023.10.31 - 이미지파일 추가하기
 */
 
 const canvas = document.getElementById("canvas");
@@ -22,6 +23,7 @@ const btnMode = document.getElementById("btnMode");
 const btnInit = document.getElementById("btnInit");
 const btnEraser = document.getElementById("btnEraser");
 let canvasBgColor = "";
+const inputFile = document.getElementById("file");
 
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 800;
@@ -129,14 +131,32 @@ function onClickInit(){
 /**
  * 그린 그림을 지운다.
  */
- function onClickEraser(event){
+function onClickEraser(event){
     //console.dir(event);
     //ctx.strokeStyle = "white";
     ctx.strokeStyle = canvasBgColor;
     isFilling = false;
     btnMode.innerText = "채우기"
 
- }
+}
+
+/**
+ * 선택한 이미지 파일을 그림판에 추가한다.
+ */
+function onChangeFile(event){
+    console.log(event);
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.src = url ;
+    image.onload = function(){
+        ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        //drawImage(image, dx, dy, dWidth, dHeight)
+        // inputFile.value = null;
+    };
+
+}
+
 
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
@@ -152,4 +172,6 @@ btnMode.addEventListener("click", onMode);
 
 btnInit.addEventListener("click", onClickInit);
 
-btnEraser.addEventListener("click", onClickEraser)
+btnEraser.addEventListener("click", onClickEraser);
+
+inputFile.addEventListener("change", onChangeFile);
