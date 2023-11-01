@@ -15,6 +15,7 @@
 *                  - 배경색에 맞추어 지우기 기능 추가
 *       2023.10.31 - 이미지파일 추가하기
 *       2023.11.01 - 캔버스에 텍스트 입력 추가하기
+*                  - 작업한 이미지 파일로 저장하기
 */
 
 const canvas = document.getElementById("canvas");
@@ -23,9 +24,11 @@ const colorOptions = Array.from(document.getElementsByClassName("color-option"))
 const btnMode = document.getElementById("btnMode");
 const btnInit = document.getElementById("btnInit");
 const btnEraser = document.getElementById("btnEraser");
-let canvasBgColor = "";
 const inputFile = document.getElementById("file");
 const inputText = document.getElementById("text");
+const btnSave = document.getElementById("save");
+
+let canvasBgColor = "";
 
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 800;
@@ -177,6 +180,17 @@ function onDoubleClick(event){
     }
 }
 
+/**
+ * 작업한 이미지를 파일로 저장한다.
+ */
+function saveImage(){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
+
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", cancelPainting);
@@ -195,3 +209,5 @@ btnEraser.addEventListener("click", onClickEraser);
 
 inputFile.addEventListener("change", onChangeFile);
 canvas.addEventListener("dblclick", onDoubleClick);
+
+btnSave.addEventListener("click", saveImage);
