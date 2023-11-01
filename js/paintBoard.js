@@ -14,6 +14,7 @@
 *                  - 지우기 기능 추가
 *                  - 배경색에 맞추어 지우기 기능 추가
 *       2023.10.31 - 이미지파일 추가하기
+*       2023.11.01 - 캔버스에 텍스트 입력 추가하기
 */
 
 const canvas = document.getElementById("canvas");
@@ -24,6 +25,7 @@ const btnInit = document.getElementById("btnInit");
 const btnEraser = document.getElementById("btnEraser");
 let canvasBgColor = "";
 const inputFile = document.getElementById("file");
+const inputText = document.getElementById("text");
 
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 800;
@@ -32,6 +34,7 @@ const CANVAS_HEIGHT = 800;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round";
 
 //flag 변수
 let isPainting = false;
@@ -157,6 +160,22 @@ function onChangeFile(event){
 
 }
 
+/**
+ * 캔버스를 더블클릭했을 때 실행하는 함수
+ * 사용자가 입력한 텍스트를 캔버스에 표시한다.
+ */
+function onDoubleClick(event){
+    // console.dir(event);
+    const text = inputText.value;
+    if (text !== ""){
+        ctx.save();
+        ctx.lineWidth = 1;
+        ctx.font = "60px 'consolas'";
+        ctx.strokeText(text, event.offsetX, event.offsetY);
+        // ctx.fillText(text, event.offsetX, event.offsetY);
+        ctx.restore();
+    }
+}
 
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", onMouseDown);
@@ -175,3 +194,4 @@ btnInit.addEventListener("click", onClickInit);
 btnEraser.addEventListener("click", onClickEraser);
 
 inputFile.addEventListener("change", onChangeFile);
+canvas.addEventListener("dblclick", onDoubleClick);
