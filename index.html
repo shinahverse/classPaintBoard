@@ -7,24 +7,30 @@
     <title>나의 그림판 ver1.0</title>
 </head>
 <body>
+    <div class="color-options">
+        <input type="color" id="color" />
+        <div class="color-option" style="background-color: #1abc9c;" data-color="#1abc9c"></div> 
+        <div class="color-option" style="background-color: #3498db;" data-color="#3498db"></div>
+        <div class="color-option" style="background-color: #8e44ad;" data-color="#8e44ad"></div>
+        <div class="color-option" style="background-color: #2c3e50;" data-color="#2c3e50"></div>
+        <div class="color-option" style="background-color: #e67e22;" data-color="#e67e22"></div>
+        <div class="color-option" style="background-color: #f1c40f;" data-color="#f1c40f"></div>
+        <div class="color-option" style="background-color: #f39c12;" data-color="#f39c12"></div>
+        <div class="color-option" style="background-color: #c0392b;" data-color="#c0392b"></div>
+    </div>
     <canvas id="canvas"></canvas>
-    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
+    <div class="btns">
+        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
+        <button id="btnMode">채우기</button>
+        <button id="btnInit">초기화</button>
+        <button id="btnEraser">지우개</button>
+        <label for ="file">
+            <input type="file" accept="image/*" id="file"/>
+        </label>
+        <input type="text" placeholder="입력 후 그림판을 더블클릭하세요." id="text"/>
+        <button id="save">이미지 저장</button>
+    </div>
 
-    <div class="color-option" style="background-color: #1abc9c;" data-color="#1abc9c"></div> 
-    <div class="color-option" style="background-color: #3498db;" data-color="#3498db"></div>
-    <div class="color-option" style="background-color: #8e44ad;" data-color="#8e44ad"></div>
-    <div class="color-option" style="background-color: #2c3e50;" data-color="#2c3e50"></div>
-    <div class="color-option" style="background-color: #e67e22;" data-color="#e67e22"></div>
-    <div class="color-option" style="background-color: #f1c40f;" data-color="#f1c40f"></div>
-    <div class="color-option" style="background-color: #f39c12;" data-color="#f39c12"></div>
-    <div class="color-option" style="background-color: #c0392b;" data-color="#c0392b"></div>
-
-    <button id="btnMode">채우기</button>
-    <button id="btnInit">초기화</button>
-    <button id="btnEraser">지우개</button>
-    <input type="file" accept="image/*" id="file"/>
-    <input type="text" placeholder="입력 후 그림판을 더블클릭하세요." id="text"/>
-    <button id="save">이미지 저장</button>
     <script src="js/paintBoard.js"></script>
 </body>
 </html>
